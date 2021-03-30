@@ -29,8 +29,9 @@ except FileNotFoundError:
 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
 
 parameters = {
-  'symbol':symbols#'BTC,ETH,LINK,XTZ,FIL,VET,STORJ,XVG,DOGE'
+  'symbol':symbols
 }
+
 headers = {
   'Accepts': 'application/json',
   'X-CMC_PRO_API_KEY': key,
@@ -60,10 +61,12 @@ try:
   response = session.get(url, params=parameters)
   data = json.loads(response.text)
   final = open(finalFile,'a')
+  newest = open('newest.csv','w')
   final.write(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
   #### Iterate over all currencies
   for i in currencies:
     price = data["data"][i]["quote"]["USD"]["price"]
+    newest.write(i+";"+str(price)+"\n")
     final.write(";")
     ### Formatting, decimal places
     if price > 100:
