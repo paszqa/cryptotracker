@@ -1,16 +1,16 @@
-# cryptotracker
+# General requirements
 Crypto price reporting tool
 
 - requires python3
 - requires python packages: json, request, datetime 
 - requires CoinMarketCap key to be present in "key" file within the same directory as the script
 
-#crypto.py
+# crypto.py
 
 - creates a CSV reports within the same dir - "final.csv" (with price history) and "newest.csv" (with only newest prices)
 - list is customizable and uses symbols (short versions of coin name, ex. BTC, ETH) - configured within the script itself
 
-##calculate.py
+## calculate.py
 
 - requires 'portfolio.csv' within same dir formatted as
 ```
