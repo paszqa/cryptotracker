@@ -16,9 +16,10 @@ def twodecimal(val):
     val = float(val)
     return str(float("{:.2f}".format(val)))
 
-f = open("portfolio.csv",'r')
-g = open("newest.csv",'r')
-p = open("profit.csv",'w')
+path = pathlib.Path(__file__).parent.absolute()
+f = open(path+"/portfolio.csv",'r')
+g = open(path+"/newest.csv",'r')
+p = open(path+"/profit.csv",'w')
 p.write("ID;Coin name;Quantity;Bought for;Current price;Profit\n")
 lines = f.readlines()[1:]
 newestlines = g.readlines()[1:]

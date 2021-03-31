@@ -2,7 +2,7 @@ from requests import Request, Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 from datetime import datetime
-
+import pathlib
 ### CONFIG ###########
 finalFile = 'final.csv'
 currencies = ["BTC", "ETH", "LINK", "XTZ", "FIL", "VET", "STORJ", "XVG", "DOGE"]
@@ -15,9 +15,11 @@ for c, name in enumerate(currencies):
         symbols += ","
     symbols += name
 
+path = pathlib.Path(__file__).parent.absolute()
+
 #check for key file
 try:
-    f = open("key",'r')
+    f = open(str(path)+"/key",'r')
     key = f.readline().rstrip()
 except FileNotFoundError:
     print("Key file is missing. Please place file 'key' within the same directory as the script.")
