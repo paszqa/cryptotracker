@@ -1,3 +1,5 @@
+import pathlib
+from datetime import datetime
 def formatvalue(val):
     ### Formatting, decimal places
     val = float(val)
@@ -17,9 +19,9 @@ def twodecimal(val):
     return str(float("{:.2f}".format(val)))
 
 path = pathlib.Path(__file__).parent.absolute()
-f = open(path+"/portfolio.csv",'r')
-g = open(path+"/newest.csv",'r')
-p = open(path+"/profit.csv",'w')
+f = open(str(path)+"/portfolio.csv",'r')
+g = open(str(path)+"/newest.csv",'r')
+p = open(str(path)+"/profit.csv",'w')
 p.write("ID;Coin name;Quantity;Bought for;Current price;Profit\n")
 lines = f.readlines()[1:]
 newestlines = g.readlines()[1:]
@@ -49,7 +51,8 @@ totalprofit = float(totalworth) - float(totalspent)
 totalprofit = twodecimal(totalprofit)
 totalworth = twodecimal(totalworth)
 totalspent = twodecimal(totalspent)
-p.write("TOTAL;;;"+totalspent+";"+totalworth+";"+totalprofit+"\n")
+date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+p.write("TOTAL;"+date+";;"+totalspent+";"+totalworth+";"+totalprofit+"\n")
 f.close()
 g.close()
 
