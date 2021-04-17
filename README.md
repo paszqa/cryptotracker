@@ -24,3 +24,27 @@ STORJ;4.243;11.72
 XVG;297.53;0
 ```
 - creates a CSV report within same dir - "profit.csv" 
+
+# Final notes
+
+Files which do the work:
+
+```
+crypto.py
+calculate.py
+```
+
+Files which are required for the above to work:
+
+```
+key
+portfolio.csv
+```
+
+Files created by the scripts:
+
+```
+final.csv
+newest.csv
+profit.csv
+```
