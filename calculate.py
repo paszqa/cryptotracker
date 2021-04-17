@@ -41,18 +41,26 @@ for (number, line) in enumerate(lines):
         splitnewest = n.split(";")
         if splitnewest[0] == name:
             worth = float(splitnewest[1]) * float(quantity)
+            if float(boughtfor) > 0:
+              roi = (worth/float(boughtfor)) * 100
+              roi = twodecimal(roi)
+            else:
+              roi = "---"
             worth = twodecimal(worth)
             totalworth += float(worth)
             profit = float(worth) - float(boughtfor)
             profit = twodecimal(profit)
-            p.write(str(worth)+";"+str(profit)+"\n")
+            #roi = twodecimal(roi)
+            p.write(str(worth)+";"+str(profit)+"("+str(roi)+"%)"+"\n")
             #print(str(worth)+" (single coin: "+splitnewest[1]+")")
 totalprofit = float(totalworth) - float(totalspent)
+totalreturn = twodecimal(totalworth/totalspent * 100)
 totalprofit = twodecimal(totalprofit)
 totalworth = twodecimal(totalworth)
 totalspent = twodecimal(totalspent)
+#totalreturn = twodecimal(totalworth/totalspent * 100)
 date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-p.write("TOTAL;"+date+";;"+totalspent+";"+totalworth+";"+totalprofit+"\n")
+p.write("TOTAL;"+date+";;"+totalspent+";"+totalworth+"("+totalreturn+"%)"+";"+totalprofit+"\n")
 f.close()
 g.close()
 
