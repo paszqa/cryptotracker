@@ -24,7 +24,7 @@ g = open(str(path)+"/newest.csv",'r')
 p = open(str(path)+"/profit.csv",'w')
 p.write("ID;Coin name;Quantity;Bought for;Current price;Profit\n")
 lines = f.readlines()[1:]
-newestlines = g.readlines()[1:]
+newestlines = g.readlines()[0:]
 totalspent = 0
 totalworth = 0
 for (number, line) in enumerate(lines):
@@ -35,6 +35,7 @@ for (number, line) in enumerate(lines):
     boughtfor = formatvalue(splitline[2].rstrip())
     totalspent += float(boughtfor)
     p.write(str(number)+";"+name+";"+quantity+";"+boughtfor+";")
+    #print("1:"+name)
     #print(str(number)+" - "+name+" I have:"+quantity+" bought for "+boughtfor+ " now it costs: ")
     #find newest line with name
     for n in newestlines:
@@ -51,6 +52,7 @@ for (number, line) in enumerate(lines):
             profit = float(worth) - float(boughtfor)
             profit = twodecimal(profit)
             #roi = twodecimal(roi)
+            #print("xyz-"+name)
             p.write(str(worth)+";"+str(profit)+"("+str(roi)+"%)"+"\n")
             #print(str(worth)+" (single coin: "+splitnewest[1]+")")
 totalprofit = float(totalworth) - float(totalspent)

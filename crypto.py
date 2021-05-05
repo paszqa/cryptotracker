@@ -5,7 +5,7 @@ from datetime import datetime
 import pathlib
 ### CONFIG ###########
 finalFile = 'final.csv'
-currencies = ["BTC", "ETH", "LINK", "XTZ", "FIL", "VET", "STORJ", "XVG", "DOGE", "ADA"]
+currencies = ["BTC", "ETH", "LINK", "XTZ", "FIL", "VET", "STORJ", "XVG", "DOGE", "ADA", "MATIC", "XWP", "RVN"]
 ####################
 
 
