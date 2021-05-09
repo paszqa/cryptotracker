@@ -22,17 +22,23 @@ path = pathlib.Path(__file__).parent.absolute()
 f = open(str(path)+"/portfolio.csv",'r')
 g = open(str(path)+"/newest.csv",'r')
 p = open(str(path)+"/profit.csv",'w')
+h = open(str(path)+"/history.csv",'a')
+
 p.write("ID;Coin name;Quantity;Bought for;Current price;Profit\n")
 lines = f.readlines()[1:]
 newestlines = g.readlines()[0:]
 totalspent = 0
 totalworth = 0
+totalinvestedthen = 0
+totalinvestednow = 0
 for (number, line) in enumerate(lines):
     #print(line.rstrip())
     splitline = line.split(";")
     name = splitline[0].rstrip()
     quantity = formatvalue(splitline[1].rstrip())
     boughtfor = formatvalue(splitline[2].rstrip())
+    if float(boughtfor) > 0:
+        totalinvestedthen += float(boughtfor)
     totalspent += float(boughtfor)
     p.write(str(number)+";"+name+";"+quantity+";"+boughtfor+";")
     #print("1:"+name)
@@ -53,6 +59,8 @@ for (number, line) in enumerate(lines):
             profit = twodecimal(profit)
             #roi = twodecimal(roi)
             #print("xyz-"+name)
+            if float(boughtfor) > 0:
+              totalinvestednow += float(worth)
             p.write(str(worth)+";"+str(profit)+"("+str(roi)+"%)"+"\n")
             #print(str(worth)+" (single coin: "+splitnewest[1]+")")
 totalprofit = float(totalworth) - float(totalspent)
@@ -63,6 +71,7 @@ totalspent = twodecimal(totalspent)
 #totalreturn = twodecimal(totalworth/totalspent * 100)
 date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 p.write("TOTAL;"+date+";;"+totalspent+";"+totalworth+"("+totalreturn+"%)"+";"+totalprofit+"\n")
+h.write(date+";"+str(totalinvestedthen)+";"+str(twodecimal(totalinvestednow))+";"+str(twodecimal(totalinvestednow - totalinvestedthen))+"\n")
 f.close()
 g.close()
 
