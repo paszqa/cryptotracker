@@ -45,11 +45,11 @@ session.headers.update(headers)
 
 ##### Check if CSV file exists #####
 try:
-    f = open(finalFile)
+    f = open(str(path)+"/"+finalFile)
     f.close()
 except FileNotFoundError:
     print('File does not exist. Creating a new one.')
-    f = open(finalFile,'w')
+    f = open(str(path)+"/"+finalFile,'w')
     f.write("Time;")
     for c in currencies:
         f.write(c+";")
@@ -62,8 +62,8 @@ except FileNotFoundError:
 try:
   response = session.get(url, params=parameters)
   data = json.loads(response.text)
-  final = open(finalFile,'a')
-  newest = open('newest.csv','w')
+  final = open(str(path)+"/"+finalFile,'a')
+  newest = open(str(path)+'/newest.csv','w')
   final.write(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
   #### Iterate over all currencies
   for i in currencies:
