@@ -23,6 +23,7 @@ f = open(str(path)+"/portfolio.csv",'r')
 g = open(str(path)+"/newest.csv",'r')
 p = open(str(path)+"/profit.csv",'w')
 h = open(str(path)+"/history.csv",'a')
+hf = open(str(path)+"/historyfull.csv",'a')
 
 p.write("ID;Coin name;Quantity;Bought for;Current price;Profit\n")
 lines = f.readlines()[1:]
@@ -72,7 +73,9 @@ totalspent = twodecimal(totalspent)
 date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 p.write("TOTAL;"+date+";;"+totalspent+";"+totalworth+"("+totalreturn+"%)"+";"+totalprofit+"\n")
 h.write(date+";"+str(totalinvestedthen)+";"+str(twodecimal(totalinvestednow))+";"+str(twodecimal(totalinvestednow - totalinvestedthen))+"\n")
+hf.write(date+";"+str(totalworth)+"\n")
 f.close()
 g.close()
-
+h.close()
+hf.close()
 

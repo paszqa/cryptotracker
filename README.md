@@ -24,6 +24,7 @@ STORJ;4.243;11.72
 XVG;297.53;0
 ```
 - creates a CSV report within same dir - "profit.csv" 
+- creates a CSV report within same dir - "history.csv" - which contains easy gains table to make graph creation faster
 
 # Final notes
 
@@ -47,4 +48,5 @@ Files created by the scripts:
 final.csv
 newest.csv
 profit.csv
+history.csv
 ```
