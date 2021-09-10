@@ -5,7 +5,8 @@ from datetime import datetime
 import pathlib
 ### CONFIG ###########
 finalFile = 'final.csv'
-currencies = ["BTC", "ETH", "LINK", "XTZ", "FIL", "VET", "STORJ", "XVG", "DOGE", "ADA", "MATIC", "XWP", "RVN", "ALGO", "XLM"]
+newestFile = 'newest.csv'
+currencies = ["BTC", "ETH", "LINK", "XTZ", "FIL", "VET", "STORJ", "XVG", "DOGE", "ADA", "MATIC", "XWP", "RVN", "ALGO", "XLM", "NANO", "BNB"]
 ####################
 
 
@@ -63,7 +64,7 @@ try:
   response = session.get(url, params=parameters)
   data = json.loads(response.text)
   final = open(str(path)+"/"+finalFile,'a')
-  newest = open(str(path)+'/newest.csv','w')
+  newest = open(str(path)+'/'+newestFile,'w')
   final.write(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
   #### Iterate over all currencies
   for i in currencies:

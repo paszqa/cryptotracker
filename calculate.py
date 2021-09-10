@@ -25,7 +25,7 @@ p = open(str(path)+"/profit.csv",'w')
 h = open(str(path)+"/history.csv",'a')
 hf = open(str(path)+"/historyfull.csv",'a')
 
-p.write("ID;Coin name;Quantity;Bought for;Current price;Profit\n")
+p.write("ID;Coin name;Quantity;Bought for;Current price;Profit;Profit percent\n")
 lines = f.readlines()[1:]
 newestlines = g.readlines()[0:]
 totalspent = 0
@@ -62,7 +62,7 @@ for (number, line) in enumerate(lines):
             #print("xyz-"+name)
             if float(boughtfor) > 0:
               totalinvestednow += float(worth)
-            p.write(str(worth)+";"+str(profit)+"("+str(roi)+"%)"+"\n")
+            p.write(str(worth)+";"+str(profit)+";"+str(roi)+""+"\n")
             #print(str(worth)+" (single coin: "+splitnewest[1]+")")
 totalprofit = float(totalworth) - float(totalspent)
 totalreturn = twodecimal(totalworth/totalspent * 100)
@@ -71,7 +71,7 @@ totalworth = twodecimal(totalworth)
 totalspent = twodecimal(totalspent)
 #totalreturn = twodecimal(totalworth/totalspent * 100)
 date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-p.write("TOTAL;"+date+";;"+totalspent+";"+totalworth+"("+totalreturn+"%)"+";"+totalprofit+"\n")
+p.write("TOTAL;"+date+";;"+totalspent+";"+totalworth+";"+totalreturn+"%"+";"+totalprofit+"\n")
 h.write(date+";"+str(totalinvestedthen)+";"+str(twodecimal(totalinvestednow))+";"+str(twodecimal(totalinvestednow - totalinvestedthen))+"\n")
 hf.write(date+";"+str(totalworth)+"\n")
 f.close()
